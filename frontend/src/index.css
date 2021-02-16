@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  
+}
+
+input[data-touched="true"]:invalid{
+  border: 1px solid coral;
+}
+
+
+.form-req{
+  visibility: hidden;
+}
+
+
+input[data-touched="true"]:invalid ~ .form-req{
+visibility: visible;
+}
+
