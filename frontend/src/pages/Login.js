@@ -1,59 +1,58 @@
- import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
-import * as yup from 'yup';
-//import { validateSchema } from '../validation/Admin';
-import {useHistory } from 'react-router-dom';
+import {useHistory, Link } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../actions/adminActions';
 
 const Login = () => {
-     const history = useHistory();
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-   // const[touchFields, setTouchedFields]=useState({})
-     
-  const [showpassword, setShowpassword] = useState(false);
-  
-
-  // const setFieldTouched = (e) => {
-  //   setTouchedFields((touchFields) => ({
-  //     ...touchFields,
-  //      [Event.target.name]: true }))
-  //  }
+    const [showpassword, setShowpassword] = useState(false);
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
 
-  // const createAdmin = async (e) => {
-  //   e.preventDefault();
-  //   let formData = {
-  //     email: e.target[0].value,
-  //     password:e.target[1].value
-  //   }
-  //   const isValid = await validateSchema.isValid(formData);
-  //   console.log('hi', isValid);
-  //   }
+  const validate = () => {
+    let emailError = "";
+    let passwordError = "";
 
-  const  handleClick = async (e) => {
-            e.preventDefault();
-      console.log('this.state', email, password);
-      
-     const result = await axios({
-          method: 'post',
-          url: 'http://localhost:8000/api/v1/admin/signin',
-          data: { email, password }
-     })
-         .then(data => {
-           console.log(data);
-           setTimeout(() => {
-             history.push('/admindashbord');
-           },2000)
-         })
-         .catch(err => {
-            console.log(err)
-         })          
-      
-      if (result) {
-          console.log(result);
-      }
-    };
-      
+    if(!email) {
+      emailError = "a valid email is required"
+    }
+
+    if(!password) {
+      passwordError = "a valid Password is required"
+    }
+
+    if(emailError && passwordError) {
+      setEmailError(emailError);
+      setPasswordError(passwordError);
+      return false;
+    }
+    return true;
+  }
+
+  const dispatch = useDispatch();
+
+  const adminLogin = useSelector(state => state.adminLogin)
+  const {loading, error, adminInfo}  = adminLogin;
+
+  useEffect(() => {
+    if(adminInfo) {
+      history.push('/admindashboard')
+    }
+  }, [history, adminInfo])
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const isValid = validate();
+    if(isValid) {
+      setEmail("");
+      setShowpassword(false);
+    }
+    dispatch(login(email, password))
+  }
 
 
     return (
@@ -70,14 +69,8 @@ const Login = () => {
                 <div id="logo">
                   <a href="demo-forum.html" className="standard-logo">
                     <img
-                      src="demos/forum/images/canvasforum.png"
-                      alt="Canvas Logo"
-                    />
-                  </a>
-                  <a href="demo-forum.html" className="retina-logo">
-                    <img
-                      src="demos/forum/images/canvasforum%402x.png"
-                      alt="Canvas Logo"
+                      src="Idora_Logo.png"
+                      alt="Idora Logo"
                     />
                   </a>
                 </div>
@@ -107,35 +100,32 @@ const Login = () => {
                       id="login-form"
                       name="login-form"
                       className="mb-0 row"
-                      onSubmit={handleClick}
-                      // onSubmit={createAdmin}              
+                      onSubmit={handleClick}           
                       >
                       <div className="col-12 form-group">
                         <label
                           className="nott ls0 font-weight-normal mb-1"
-                          for="login-form-username"
+                          htmlFor="login-form-username"
                         >
-                           email:
+                          Email:
                         </label>
                         <input
                             type="email"
-                            name="emai"
+                            name="email"
                             id="login-form-username"
                             className="form-control font-weight-semibold"
-                            placeholder="email"
-                            required
+                            placeholder="Email"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
-
                           />
-                          <p className="form-req">a valid email is required</p>
+                          <p className="form-req">{emailError}</p>
                         </div>
                         
                       <div className="clear"></div>
                       <div className="col-12 form-group">
                         <label
                           className="nott ls0 font-weight-normal mb-1"
-                          for="login-form-password"
+                          htmlFor="login-form-password"
                         >
                           Password:
                         </label>
@@ -145,24 +135,21 @@ const Login = () => {
                                 type={!showpassword?"password":"text"}
                                 className="form-control font-weight-semibold border-right-0"
                                 placeholder="Password"
-                                required=""
-                              onChange={(e) => setPassword(e.target.value)}
-                              required
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                           <div className="input-group-append">
                               <button 
                                 onClick={()=>setShowpassword(!showpassword)}
                               className="btn"
-                           
+                          
                               type="button"
                             >
-                                <i className={!showpassword?"icon-line-eye text-smaller":"fa fa-eye-slash text-smaller"}
-                                
+                                <i className={!showpassword?"icon-line-eye text-smaller":"far fa-eye-slash text-smaller"}
                                 ></i>
                             </button>
                             </div>
                           </div>
-                          <p className="form-req">a valid password is required</p>
+                          <p className="form-req">{passwordError}</p>
                       </div>
 
                       <div className="col-12 d-flex justify-content-between">
@@ -175,7 +162,7 @@ const Login = () => {
                           />
                           <label
                             className="form-check-label nott ls0 mb-0 font-weight-semibold"
-                            for="inlineCheckbox2"
+                            htmlFor="inlineCheckbox2"
                           >
                             Remember me
                           </label>
@@ -184,19 +171,6 @@ const Login = () => {
                           <u>Forgot Password?</u>
                         </a>
                       </div>
-
-
-
-                        
-
-
-
-
-
-
-
-
-
 
                       <div className="col-12 mt-4">
                         <button

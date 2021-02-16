@@ -9,7 +9,9 @@ input[data-touched="true"]:invalid{
 
 
 .form-req{
-  visibility: hidden;
+  /* visibility: hidden; */
+  color: red;
+  font-size: 14px;
 }
 
 
