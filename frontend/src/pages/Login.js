@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
-import axios from 'axios';
 import {useHistory, Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../actions/adminActions';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Login = () => {
     const history = useHistory();
@@ -171,15 +171,15 @@ const Login = () => {
                           <u>Forgot Password?</u>
                         </a>
                       </div>
-
                       <div className="col-12 mt-4">
                         <button
                           className="button button-large btn-block bg-alt py-2 rounded-sm font-weight-medium nott ls0 m-0"
                           id="login-form-submit"
                           name="login-form-submit"
                           value="login"
-                        type="submit">
-                          Sign in
+                          disabled={loading}
+                          type="submit">
+                          {loading ? <Spinner animation="border" variant="light" /> : <p style={{margin: '0px'}}>Sign in</p>}
                         </button>
                       </div>
                     </form>
@@ -189,7 +189,7 @@ const Login = () => {
             </div>
           </div>
         </section>
-        <footer id="footer" className="dark">
+        {/* <footer id="footer" className="dark">
           <div id="copyrights">
             <div className="container">
               <div className="row col-mb-30">
@@ -279,7 +279,7 @@ const Login = () => {
               </div>
             </div>
           </div>
-        </footer>
+        </footer> */}
       </div>
       <div id="gotoTop" className="icon-angle-up"></div>
     </>
