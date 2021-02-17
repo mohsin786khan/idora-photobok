@@ -40,8 +40,6 @@ const jwt = require('jsonwebtoken');
 //     }
 // }
 
-console.log("hello");
-
 module.exports.signin = async function(req, res){
 
     try {

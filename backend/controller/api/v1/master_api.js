@@ -13,7 +13,7 @@ module.exports.create = async function (req, res) {
     {
         return res.status(401).json( {
             message: "Internal Server Error"
-           });
+        });
     }
 }
 
@@ -30,7 +30,7 @@ module.exports.showAll = async function (req, res) {
     catch(err) {
         return res.status(401).json( {
             message: "Internal Server Error"
-           });   
+        });   
     }
 }
 
@@ -44,15 +44,15 @@ module.exports.update = async function (req, res) {
                 {
                     return res.status(401).json( {
                         message: "Internal Server Error"
-                       });  
+                    });  
                 }
                 else {
                     console.log(info);
                     return res.status(200).json({
                         message: "updated sucessfull",
-                          info
+                        info
                     });
-                   }
+                }
 
             });
         }     
@@ -61,12 +61,12 @@ module.exports.update = async function (req, res) {
     catch (err) {
         return res.status(401).json( {
             message: "Internal Server Error"
-           });   
+        });   
     }
 }
 
 module.exports.delete = async function (req, res) {
-     console.log(req.params.id);
+    console.log(req.params.id);
     try {
         let deleteone = await Master.findById(req.params.id);
         deleteone.remove();

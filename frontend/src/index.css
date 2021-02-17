@@ -19,3 +19,6 @@ input[data-touched="true"]:invalid ~ .form-req{
 visibility: visible;
 }
 
+.spinner {
+  color: white;
+}
