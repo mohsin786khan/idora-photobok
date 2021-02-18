@@ -3,15 +3,28 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import {
-    adminLoginReducer
+    adminLoginReducer,
+    adminUserListReducer,
+    adminUserDeleteReducer,
+    adminUserReducer,
+    createUserReducer,
+    updateAdminUserReducer,
 } from './reducers/adminReducers.js';
 
 const reducer = combineReducers({
     adminLogin: adminLoginReducer,
+    adminUserList: adminUserListReducer,
+    adminUserDelete: adminUserDeleteReducer,
+    adminUser: adminUserReducer,
+    createNewUser: createUserReducer,
+    updateAdminUser: updateAdminUserReducer,
 })
 
-const initialState = {
+const adminInfoFromStorage = localStorage.getItem('adminInfo') ? JSON.parse
+    ( localStorage.getItem('adminInfo')) : null
 
+const initialState = {
+    adminLogin: {adminInfo: adminInfoFromStorage}
 }
 
 const middleware = [thunk]

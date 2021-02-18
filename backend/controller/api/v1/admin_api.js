@@ -54,9 +54,7 @@ module.exports.signin = async function(req, res){
 
         return res.status(200).json({
             message: 'Sign in successful, here is your token',
-            data:  {
                 token: jwt.sign(admin.toJSON(), 'codeial', {expiresIn:  '30000000'})
-            }
         })
 
     }catch(err){

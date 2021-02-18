@@ -15,7 +15,8 @@ const adduserSchema = new mongoose.Schema({
         required:true
     },
     status: {
-        type:Boolean
+        type:Boolean,
+        default: true
     }
 }, {
     timestamps:true

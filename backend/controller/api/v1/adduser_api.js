@@ -9,6 +9,7 @@ module.exports.create = async function (req, res) {
         });
     }
     catch (err) {
+        console.log(err)
         return res.status(401).json( {
             message: "Internal Server Error"
         });
@@ -45,7 +46,7 @@ module.exports.delete = async function (req, res) {
         let deleteuser = await Adduser.findById(req.params.id);
         deleteuser.remove();
 
-        return res.json(200, {
+        return res.status(200).json( {
             message:"user has been removed"
         });
 } catch (err) {
@@ -63,13 +64,25 @@ module.exports.showList = async function (req, res) {
 
         return res.status(200).json({
             message: "sucessfully created",
-             users
+            users
         });
     
 }catch (err) {
-    return res.status(401).json( {
+    return res.status(401).json({
         message: "Internal Server Error"
-       });
+    });
     }
     
+}
+
+module.exports.showUser = async function(req, res) {
+    try {
+        let user = await Adduser.findById(req.params.id);
+
+        return res.status(200).json(user)
+    } catch(err) {
+        return res.status(404).json({
+            message: "No Found"
+        })
+    }
 }
