@@ -1,16 +1,16 @@
-const Master = require('../../../models/mastersetting');
+const AdminCms = require('../../../models/admincms');
 
 module.exports.create = async function (req, res) {
     try {
-        let newEntry = await Master.create(req.body);
-
+        console.log(req.body);
+        let newEntry = await AdminCms.create(req.body);
+         
         return res.status(200).json({
             message: "sucessfully created",
             newEntry:newEntry
         })
-    }
-    catch (err)
-    {
+
+    } catch (err) {
         return res.status(401).json( {
             message: "Internal Server Error"
         });
@@ -18,13 +18,13 @@ module.exports.create = async function (req, res) {
 }
 
 
-module.exports.showAll = async function (req, res) {
+module.exports.showall = async function (req, res) {
     try {
-        let users =await Master.find({}); 
+        let users =await AdminCms.find({}); 
         
         return res.status(200).json({
             message: "sucessfully created",
-            users_in_master: users
+            users_in_Cms: users
         });
     }
     catch(err) {
@@ -35,11 +35,13 @@ module.exports.showAll = async function (req, res) {
 }
 
 
+
+
 module.exports.update = async function (req, res) {
     try {
       //  console.log("ji", req.params.id);
         if (req.params.id) {
-            let userEdit =  Master.findByIdAndUpdate(req.params.id, req.body, function (err, info) {
+            let userEdit =  AdminCms.findByIdAndUpdate(req.params.id, req.body, function (err, info) {
                 if (err)
                 {
                     return res.status(401).json( {
@@ -66,10 +68,11 @@ module.exports.update = async function (req, res) {
 }
 
 
+
 module.exports.delete = async function (req, res) {
     console.log(req.params.id);
     try {
-        let deleteone = await Master.findById(req.params.id);
+        let deleteone = await AdminCms.findById(req.params.id);
         deleteone.remove();
 
         return res.json(200, {
@@ -84,3 +87,6 @@ module.exports.delete = async function (req, res) {
         });       
  }   
 }
+
+
+

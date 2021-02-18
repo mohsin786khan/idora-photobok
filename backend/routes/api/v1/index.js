@@ -10,5 +10,7 @@ router.use('/users', require('./users'));
 router.use('/admin', require('./admin'));
 router.use('/master', require('./master'));
 router.use('/adduser', require('./adduser'));
+router.use('/cms', require('./cms'));
+
 
  module.exports = router;
