@@ -10,6 +10,7 @@ const AdminUserAdd = ({history}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contact, setContact] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
 
@@ -36,6 +37,7 @@ const AdminUserAdd = ({history}) => {
       name: name,
       email: email,
       contact: contact,
+      password: password
     }
 
     dispatch(createUser(newUser));
@@ -66,13 +68,19 @@ const AdminUserAdd = ({history}) => {
                       value={email} onChange={(e) => setEmail(e.target.value)}  />
                     </Form.Group>
                     <Form.Group controlId="formBasicContact">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control type="text" placeholder="Password"
+                      value={password} onChange={(e) => setPassword(e.target.value)}  />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicContact">
                       <Form.Label>Contact</Form.Label>
                       <Form.Control type="text" placeholder="Contact"
                       value={contact} onChange={(e) => setContact(e.target.value)}  />
                     </Form.Group>
                     {loading ? (
                       <Button variant="dark" disabled>
-                        <Spinner animation="border" variant="light" size="sm" />
+                        <Spinner animation="border" variant="light" size="sm" style={{marginRight: '5px'}} />
+                        Creating...
                       </Button>
                     ) : (
                       <Button variant="dark" type="submit">

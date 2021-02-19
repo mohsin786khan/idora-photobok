@@ -17,9 +17,9 @@ const Header = () => {
           <div className="container">
             <div className="header-row">
               <div id="logo">
-                <a href="demo-forum.html" className="standard-logo">
+                <Link to="/" className="standard-logo">
                   <img src="Idora_Logo.png" alt="Idora Logo" />
-                </a>
+                </Link>
               </div>
             <nav className="primary-menu">
               {adminInfo ? (

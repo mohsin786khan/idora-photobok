@@ -30,6 +30,7 @@ const AdminDashboard = ({history}) => {
 	const deleteHandler = (id) => {
 		if(window.confirm("Are you sure?")) {
 			dispatch(deleteUser(id))
+			dispatch(showUserList())
 		}
 	}
 

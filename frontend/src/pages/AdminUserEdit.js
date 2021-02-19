@@ -42,7 +42,7 @@ const AdminUserEdit = ({history}) => {
               setName(user.name)
               setEmail(user.email)
               setContact(user.contact)
-              setPassword(user.contact)
+              setPassword(user.password)
               setStatus(user.status)
           }
         }
@@ -57,6 +57,7 @@ const AdminUserEdit = ({history}) => {
         name: name,
         email: email,
         contact: contact,
+        password: password,
         status: status,
       }
 
@@ -87,12 +88,12 @@ const AdminUserEdit = ({history}) => {
                     </Form.Group>
                     <Form.Group controlId="formBasicContact">
                       <Form.Label>Contact</Form.Label>
-                      <Form.Control type="taxt" placeholder="Contact" 
+                      <Form.Control type="text" placeholder="Contact" 
                         value={contact} onChange={(e) => setContact(e.target.value)} />
                     </Form.Group>
                     <Form.Group controlId="formBasicCreated">
                       <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" 
+                      <Form.Control type="text" placeholder="Password" 
                         value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group>
@@ -110,7 +111,8 @@ const AdminUserEdit = ({history}) => {
                     </Form.Group>
                     {updateLoading ? (
                       <Button variant="success" disabled>
-                      <Spinner animation="border" variant="success" size="sm" />
+                      <Spinner animation="border" variant="light" size="sm" style={{marginRight: '5px'}} />
+                        Updating...
                       </Button>
                     ) : (
                       <Button variant="success" type="submit">
