@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  
+}
+
+input[data-touched="true"]:invalid{
+  border: 1px solid coral;
+}
+
+
+.form-req{
+  /* visibility: hidden; */
+  color: red;
+  font-size: 14px;
+}
+
+
+input[data-touched="true"]:invalid ~ .form-req{
+visibility: visible;
+}
+
+.spinner {
+  color: white;
+}
+
+.file-caption.icon-visible .file-caption-name {
+  font-family: 'Lato', sans-serif;
+  color: #666;
+}
+.white-section {
+  background-color: #FFF;
+  padding: 25px 20px;
+  border-radius: 3px;
+}
+
+.white-section label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.white-section pre { margin-top: 15px; }
+
+.dark .white-section {
+  background-color: #111;
+  -webkit-box-shadow: 0px 1px 1px 0px #444;
+  box-shadow: 0px 1px 1px 0px #444;
+}
