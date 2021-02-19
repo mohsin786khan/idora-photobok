@@ -5402,7 +5402,11 @@ body:not(.has-plugin-html5video) .video-wrap video {
   transform: translateY(0);
 }
 .page-title-pattern {
+<<<<<<< HEAD
   /* background-image: url(images/pattern.png); */
+=======
+  background-image: url(images/pattern.png);
+>>>>>>> 05c8607e3d914065e22bbc1687a9254ebed74a7a
   background-repeat: repeat;
   background-attachment: fixed;
 }
@@ -5424,7 +5428,11 @@ body:not(.has-plugin-html5video) .video-wrap video {
 }
 .page-title-parallax {
   background-color: transparent;
+<<<<<<< HEAD
   /* background-image: url(images/parallax/parallax-bg.jpg);*/
+=======
+  background-image: url(images/parallax/parallax-bg.jpg);
+>>>>>>> 05c8607e3d914065e22bbc1687a9254ebed74a7a
   background-attachment: fixed;
   background-position: 50% 0;
   background-repeat: no-repeat;
@@ -8354,7 +8362,11 @@ body:not(.device-touch) .button.button-full strong {
   padding: 2px;
   z-index: -1;
   box-shadow: none;
+<<<<<<< HEAD
   /* background-image: url(images/icons/iconalt.svg); */
+=======
+  background-image: url(images/icons/iconalt.svg);
+>>>>>>> 05c8607e3d914065e22bbc1687a9254ebed74a7a
   background-position: center center;
   background-size: 100% 100%;
   -webkit-transition: -webkit-transform 0.5s, opacity 0.5s,
@@ -8664,7 +8676,11 @@ body:not(.device-touch) .social-icon {
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .i-alt {
+<<<<<<< HEAD
   /* background-image: url(images/icons/iconalt.svg); */
+=======
+  background-image: url(images/icons/iconalt.svg);
+>>>>>>> 05c8607e3d914065e22bbc1687a9254ebed74a7a
   background-position: center center;
   background-size: 100% 100%;
 }
@@ -10830,7 +10846,11 @@ blockquote.float-right {
   top: 50%;
   margin-left: -32px;
   margin-top: -32px;
+<<<<<<< HEAD
   /* background: url(images/icons/play.png) no-repeat; */
+=======
+  background: url(images/icons/play.png) no-repeat;
+>>>>>>> 05c8607e3d914065e22bbc1687a9254ebed74a7a
   cursor: pointer;
   z-index: 1;
   -webkit-backface-visibility: hidden;
