@@ -1,1 +1,0 @@
-const Cms = require('../models/admincms');

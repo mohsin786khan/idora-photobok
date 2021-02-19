@@ -9,7 +9,7 @@ import ErrorComponent from '../components/ErrorComponent';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const AdminUserEdit = ({match, history}) => {
+const AdminUserEdit = ({history}) => {
 
     const userEditId = localStorage.getItem('editId')
 

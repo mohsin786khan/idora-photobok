@@ -1,9 +1,10 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {showUserList, deleteUser} from '../actions/adminActions';
 import Button from 'react-bootstrap/Button';
 import Loader from '../components/Loader'
+import ErrorComponent from '../components/ErrorComponent'
 
 const AdminDashboard = ({history}) => {
 	const dispatch = useDispatch()
@@ -45,7 +46,7 @@ const AdminDashboard = ({history}) => {
 						<h1>User Listing</h1>
 					</div>
 				</section>
-				{loading ? <Loader /> : (
+				{loading ? <Loader /> : error ? <ErrorComponent message={error.message} /> : (
 				<section id="content">
 				<div className="content-wrap">
 				<div className="container clearfix">

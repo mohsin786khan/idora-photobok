@@ -4,7 +4,6 @@ import {useState, useEffect} from 'react';
 import {createUser} from '../actions/adminActions'
 import ErrorComponent from '../components/ErrorComponent';
 import {Link} from 'react-router-dom';
-import {} from '../reducers/adminReducers';
 import { ADMIN_CREATEUSER_RESET } from '../constants/adminConstants';
 
 const AdminUserAdd = ({history}) => {
