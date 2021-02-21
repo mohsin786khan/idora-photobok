@@ -10,6 +10,8 @@ import {
     createUserReducer,
     updateAdminUserReducer,
     productListReducer,
+    productDeleteReducer,
+    productCreateReducer,
 } from './reducers/adminReducers.js';
 
 const reducer = combineReducers({
@@ -20,6 +22,8 @@ const reducer = combineReducers({
     createNewUser: createUserReducer,
     updateAdminUser: updateAdminUserReducer,
     productList: productListReducer,
+    productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
 })
 
 const adminInfoFromStorage = localStorage.getItem('adminInfo') ? JSON.parse

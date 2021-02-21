@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import {productList} from '../actions/adminActions';
+import {productList, deleteProduct} from '../actions/adminActions';
 import Button from 'react-bootstrap/Button';
 import Loader from '../components/Loader';
 import ErrorComponent from '../components/ErrorComponent';
@@ -15,6 +15,8 @@ const AdminProductManagement = ({history}) => {
 	const adminLogin = useSelector(state => state.adminLogin)
 	const { adminInfo}  = adminLogin;
 
+	const productDelete = useSelector(state => state.productDelete)
+	const {success: deleteSuccess} = productDelete
 
 	useEffect(() => {
 		if(adminInfo) {
@@ -22,13 +24,13 @@ const AdminProductManagement = ({history}) => {
 		} else {
 			history.push('/')
 		}
-	}, [history, adminInfo, dispatch])
+	}, [history, adminInfo, dispatch, deleteSuccess])
 
-	// const deleteHandler = (id) => {
-	// 	if(window.confirm("Are you sure?")) {
-	// 		dispatch(deleteUser(id))
-	// 	}
-	// }
+	const deleteHandler = (id) => {
+		if(window.confirm("Are you sure?")) {
+			dispatch(deleteProduct(id))
+		}
+	}
 
 	const handleClick = (id) => {
 		console.log(id);
@@ -48,7 +50,7 @@ const AdminProductManagement = ({history}) => {
 				<div className="content-wrap">
 				<div className="container clearfix">
 				<Link to={`/admindashboard_addproduct`}>
-					<Button variant="outline-dark" size="lg" style={{marginBottom: '30px'}}><i className="fas fa-plus-circle"></i> ADD PRODUCT </Button>
+					<Button variant="outline-dark" size="lg" style={{marginBottom: '30px'}}><i className="fas fa-plus"></i> ADD PRODUCT </Button>
 				</Link>
 					<div className="table-responsive">
 						<table id="datatable1" className="table table-striped table-bordered" cellSpacing="0" width="100%">
@@ -77,14 +79,14 @@ const AdminProductManagement = ({history}) => {
 									<td>{product.createdAt.substring(0, 10)}</td>
 									<td>
 										<ul className="list-inline m-0">
-                                                <li className="list-inline-item">
+                                                <Link to="admindashboard_editproduct" className="list-inline-item">
                                                     <button className="btn btn-primary btn-sm rounded-0" 
 													type="button" 
 													data-toggle="tooltip" 
 													data-placement="top" 
 													title="View"><i className="icon-eye"></i></button>
-                                                </li>
-                                                <Link to={'/admindashboard_edituser'} className="list-inline-item"  onClick={() => handleClick(product._id)}>
+                                                </Link>
+                                                <Link to={'/admindashboard_editproduct'} className="list-inline-item"  onClick={() => handleClick(product._id)}>
                                                     <button className="btn btn-success btn-sm rounded-0" 
 													type="button" 
 													data-toggle="tooltip" 
@@ -96,7 +98,8 @@ const AdminProductManagement = ({history}) => {
 													type="button" 
 													data-toggle="tooltip" 
 													data-placement="top" 
-													title="Delete" 
+													title="Delete"
+													onClick={() => deleteHandler(product._id)}
 													><i className="icon-trash"></i></button>
                                                 </li>
                                     </ul>

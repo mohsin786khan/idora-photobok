@@ -40,7 +40,7 @@ const Login = ({history}) => {
 
   useEffect(() => {
     if(adminInfo) {
-      history.push('/admindashboard_suserManage')
+      history.push('/admindashboard_userManage')
     }
   }, [history, adminInfo])
 

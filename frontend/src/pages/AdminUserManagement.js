@@ -35,7 +35,6 @@ const AdminDashboard = ({history}) => {
 	}
 
 	const handleClick = (id) => {
-		console.log(id);
 		localStorage.setItem('editId', id);
 	}
 
@@ -52,7 +51,7 @@ const AdminDashboard = ({history}) => {
 				<div className="content-wrap">
 				<div className="container clearfix">
 				<Link to={`/admindashboard_adduser`}>
-					<Button variant="outline-dark" size="lg" style={{marginBottom: '30px'}}><i className="fas fa-plus-circle"></i> ADD USER</Button>
+					<Button variant="outline-dark" size="lg" style={{marginBottom: '30px'}}><i className="fas fa-plus"></i> ADD USER</Button>
 				</Link>
 					<div className="table-responsive">
 						<table id="datatable1" className="table table-striped table-bordered" cellSpacing="0" width="100%">

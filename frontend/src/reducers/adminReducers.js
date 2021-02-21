@@ -22,6 +22,13 @@ import {
     ADMIN_PRODUCTLIST_REQUEST,
     ADMIN_PRODUCTLIST_SUCCESS,
     ADMIN_PRODUCTLIST_FAIL,
+    ADMIN_DELETEPRODUCT_REQUEST,
+    ADMIN_DELETEPRODUCT_SUCCESS,
+    ADMIN_DELETEPRODUCT_FAIL,
+    ADMIN_ADDPRODUCT_REQUEST,
+    ADMIN_ADDPRODUCT_SUCCESS,
+    ADMIN_ADDPRODUCT_FAIL,
+    ADMIN_ADDPRODUCT_RESET,
 } from '../constants/adminConstants.js';
 
 // * ADMIN USERMANAGEMENT REDUCERS 
@@ -161,6 +168,46 @@ export const productListReducer = (state={}, action) => {
                 loading: false,
                 error: action.payload
             }
+        default:
+            return state
+    }
+}
+
+export const productDeleteReducer = (state={}, action) => {
+    switch (action.type) {
+        case ADMIN_DELETEPRODUCT_REQUEST:
+            return {loading: true}
+        case ADMIN_DELETEPRODUCT_SUCCESS:
+            return {
+                loading: false,
+                success: true
+            }
+        case ADMIN_DELETEPRODUCT_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        default:
+            return state;
+    }
+}
+
+export const productCreateReducer = (state={}, action) => {
+    switch (action.type) {
+        case ADMIN_ADDPRODUCT_REQUEST:
+            return {loading: true}
+        case ADMIN_ADDPRODUCT_SUCCESS:
+            return {
+                loading: false,
+                success: true
+            }
+        case ADMIN_ADDPRODUCT_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case ADMIN_ADDPRODUCT_RESET:
+            return {}
         default:
             return state
     }

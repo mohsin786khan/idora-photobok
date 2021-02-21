@@ -55,6 +55,13 @@ const AdminUserAdd = ({history}) => {
         <Link to='/admindashboard_userManage'>
           <Button style={{margin: '30px 0px 0px 50px'}} variant="light">Go Back</Button>
         </Link>
+        {loading && (
+								<div class="form-process">
+									<div class="css3-spinner">
+										<div class="css3-spinner-scaler"></div>
+									</div>
+								</div>
+        )}
         <Container className="my-5 px-10">
                   <Form onSubmit={submitForm}>
                   <Form.Group controlId="formBasicPassword">
@@ -83,7 +90,7 @@ const AdminUserAdd = ({history}) => {
                         Creating...
                       </Button>
                     ) : (
-                      <Button variant="dark" type="submit">
+                      <Button variant="secondary" type="submit">
                         Create
                       </Button>
                     )}

@@ -22,6 +22,12 @@ import {
     ADMIN_PRODUCTLIST_REQUEST,
     ADMIN_PRODUCTLIST_SUCCESS,
     ADMIN_PRODUCTLIST_FAIL,
+    ADMIN_DELETEPRODUCT_REQUEST,
+    ADMIN_DELETEPRODUCT_SUCCESS,
+    ADMIN_DELETEPRODUCT_FAIL,
+    ADMIN_ADDPRODUCT_REQUEST,
+    ADMIN_ADDPRODUCT_SUCCESS,
+    ADMIN_ADDPRODUCT_FAIL,
 } from '../constants/adminConstants';
 
 // * USER MANAGEMENT ACTIONS  
@@ -150,14 +156,13 @@ export const createUser = (newUser) => async(dispatch, getState) => {
         }
 
         const {data} = await axios.post('http://localhost:8000/api/v1/adduser/create', newUser, config)
-
-        console.log(data)
         
         dispatch({
             type: ADMIN_CREATEUSER_SUCCESS,
             payload: data
         })
     } catch (error) {
+        console.log(error.response.data);
         dispatch({
             type: ADMIN_CREATEUSER_FAIL,
             payload: error.response.data
@@ -219,6 +224,59 @@ export const productList = () => async(dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: ADMIN_PRODUCTLIST_FAIL,
+            payload: error.response.data
+        })
+    }
+}
+
+export const deleteProduct = (id) => async(dispatch , getState) => {
+    try {
+        dispatch({type: ADMIN_DELETEPRODUCT_REQUEST})
+
+        const {adminLogin: {adminInfo}} = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${adminInfo.token}`
+            }
+        }
+
+        const {data} = await axios.delete(`http://localhost:8000/api/v1/addProduct/deleteProduct/${id}`, config)
+
+        dispatch({
+            type: ADMIN_DELETEPRODUCT_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: ADMIN_DELETEPRODUCT_FAIL,
+            payload: error.response.data
+        })
+    }
+}
+
+export const  createProduct = (newProduct) => async(dispatch, getState) => {
+    try {
+        dispatch({type: ADMIN_ADDPRODUCT_REQUEST})
+
+        const {adminLogin: {adminInfo}} = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${adminInfo.token}`
+            }
+        }
+
+        const {data} = await axios.post(`http://localhost:8000/api/v1/addProduct/createProduct`,newProduct, config)
+
+        dispatch({
+            type: ADMIN_ADDPRODUCT_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: ADMIN_ADDPRODUCT_FAIL,
             payload: error.response.data
         })
     }

@@ -13,7 +13,7 @@ module.exports.protect = async (req, res, next) => {
             next()
         } catch (error) {
             res.status(401).json({
-                error:"invalid token",
+                message:"invalid token",
                 statusCode: 401,
             })
            

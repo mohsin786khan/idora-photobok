@@ -52,7 +52,7 @@ module.exports.delete = async function (req, res) {
 } catch (err) {
     return res.status(401).json( {
         message: "Internal Server Error"
-       });
+    });
     }    
 
 }
